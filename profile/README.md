@@ -145,12 +145,3 @@ Hyprside is based on the concept of an **immutable ROM**, inspired by Android an
 * **Reproducibility:** setups easily replicable across machines.
 * **Simplicity:** formatting is trivial (just clear mutable subvolumes).
 * **Portability:** design makes it easier to port Hyprside to Android smartphones later.
-
----
-
-## 🚀 Current Status
-
-**tibs** and **HyprUI** are already in development.
-Hyprside is a work in progress with the long-term goal of becoming a stable, independent OS, potentially shipping **pre-installed on hardware** in the future.
-
----
