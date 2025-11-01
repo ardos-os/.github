@@ -41,7 +41,7 @@ Hyprside is our answer to that.
 ## 🧭 The Vision
 
 Hyprside is not “yet another Linux distribution.”
-It’s a **new platform** built to redefine how we experience the desktop.
+It’s a **new platform** built to redefine how we experience the desktop, having the userspace almost completely written from scratch.
 
 Our goal is to deliver:
 
