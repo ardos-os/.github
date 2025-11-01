@@ -47,7 +47,8 @@ Our goal is to deliver:
 
 * The **consistency and simplicity of iOS/macOS**,
 * The **freedom and transparency of Linux**,
-* And the **efficiency and responsiveness of modern embedded systems**.
+
+And be as **efficient and lightweight as possible**.
 
 We see Hyprside as **the next step for Linux on the desktop** — not a distro, but a new generation of system.
 
@@ -75,11 +76,11 @@ We see Hyprside as **the next step for Linux on the desktop** — not a distro, 
 
 ## 🧩 Long-Term Goals
 
-* A complete **GUI-first Linux operating system**, usable out of the box by anyone.
+* A complete **GUI-first operating system**, ready to use out of the box — without the frustrations, inconsistencies, or random issues that usually plague traditional Linux distributions.
 * Seamless **Android and Windows app integration**.
 * An **App Store** with both open and commercial software, unified under one interface.
-* **One-click system rollback** and profile syncing between devices.
-* A **developer mode** that turns Hyprside into a full Linux workstation.
+* Profile and configuration syncing between devices.
+* A **Developer Mode** that transforms Hyprside into a full development environment — unlocking the terminal and enabling the installation of compilers, libraries, editors, IDEs, and other developer tools directly from the store.
 
 ---
 
