@@ -1,147 +1,113 @@
 # Hyprside
 
-Windows 10 is coming to an end, Windows 11 is an absolute mess, Linux distributions are not a replacement for most users, and macOS is too expensive. Mobile operating systems like iOS and Android have evolved tremendously in usability, stability, ease of management, integrations, and ecosystems — but desktop operating systems have stagnated.
+> **Reimagining what a desktop operating system can be.**
 
-**Hyprside** is a Linux-based operating system designed to be the true successor to traditional distributions and even Windows itself.
-The focus is on delivering **stability, performance, and a cohesive, elegant user experience**, free from the fragmentation and fragility of existing systems.
-
-> The name *Hyprside* comes from the idea of being *“the other side.”*
-
-**WARNING: The project is still under development, this readme doesn't describe the current state of the project, but rather what I want to create**
-
+**Hyprside** is a next-generation Linux-based operating system built to challenge the status quo of desktop computing.
+It blends the **freedom of Linux**, the **coherence of macOS**, and the **fluidity of modern mobile systems** — creating an OS that feels alive, consistent, and designed with intent.
 
 ---
 
-## ✨ Main Goals
+## 🌍 Why Hyprside Exists
 
-* UX/UI on par with Apple — the best design and visual experience in the Linux ecosystem.
-* Consistent and uniform experience across the entire system.
-* Modern design, smooth animations, polished transitions.
-* Intuitive interface, free of bugs.
-* **Visual and behavioral consistency** across all applications, regardless of toolkit.
-* **GUI-first**: all essential operations are possible without the terminal (the terminal exists only as a development tool and is disabled by default).
-* Transparent integration with Windows and Android applications.
-* Btrfs snapshots and rollback without relying on external tools.
+Desktop systems have barely evolved in decades.
+Windows is bloated and confusing, Linux distributions are fragmented and inconsistent, and macOS is locked to expensive hardware.
 
-**Hyprside** is not marketed as “just another Linux distribution,” but rather as an **independent system**, similar to Android or ChromeOS.
+Meanwhile, mobile operating systems have mastered the art of **simplicity, reliability, and integration**.
+We believe the desktop deserves the same treatment — **without giving up openness or power**.
+
+Hyprside is our answer to that.
 
 ---
 
-## 🖥️ Core Components
+## ✨ What Makes It Different
 
-### 1. tibs — Tiago’s Incredible Boot Screen (Display Manager & Boot Handler)
+* **Immutable & reliable** — the base system is read-only, just like Android or ChromeOS.
+  It never breaks, no matter what you install or modify, but makes it easy to create your own system by forking hyprside
 
-* Standalone, without Wayland/X11.
-* Technical stack: **Clay + Skia + OpenGL** (same as HyprUI).
-* Handles login and lock screen.
-* **Replaces Plymouth completely**: manages the boot splash and experience.
-* Tracks boot progress by checking **systemd services**.
-* Already mostly implemented, needs to be adapted to work with the hyprside architecture
+* **Instant configuration** — everything in the system is stored in the **HyprRegistry**, a unified kernel-level database that updates live across the entire system.
+  Change a setting once — it applies everywhere, instantly.
 
-### 2. HyprDE (Desktop Environment)
+* **GPU-native UI** — powered by **HyprUI**, a Rust-based declarative framework running directly on the GPU for perfect fluidity with fast compile times.
 
-* Based on **Hyprland**, fully integrated with HyprUI and universal themes.
-* UX/UI on Apple’s level, with smooth transitions and polished usability.
-* **Windows Subsystem**: Wine/Proton integration, extended support for problematic apps (Adobe Suite, MS Office).
-* **Android Subsystem**: seamless WayDroid integration.
-* **Advanced notifications**: Android-style, interactive and persistent.
-* **Intelligent clipboard**: history, editing, and sharing.
-* **Unified drawers**: sudo, polkit, file picker, screen share, etc.
-* **Universal file picker**: injected across all toolkits.
+* **Designed for humans** — no terminal required.
+  Every system feature is accessible through a polished, cohesive graphical interface.
 
-### 3. App Store
+* **Beautiful by default** — animations, transitions, and visuals designed with the same care you’d expect from Apple — but fully open source.
 
-* Custom backend (no PackageKit), fast and resilient.
-* Integration with flatpak and the package manager in developer mode 
-* Integration with the Windows subsystem, allowing for Windows applications in the same store
-
-### 4. Settings App
-
-* Full system management via GUI (replaces terminal).
-* Multi-GPU management, permissions, theming, animations, screen recording, etc.
-* Export/import system for replicating setups across devices.
-* **Hyprtheme**: a single TOML file inspired by Tailwind, applied across GTK, Qt, HyprUI, etc.
+* **Daemonless core** — minimal background processes for maximum performance.
 
 ---
 
-## 🎨 UI / Toolkit Architecture
+## 🧭 The Vision
 
-### HyprUI
+Hyprside is not “yet another Linux distribution.”
+It’s a **new platform** built to redefine how we experience the desktop.
 
-* Custom toolkit written in **Rust**.
-* Based on **Clay + Skia**, with a declarative, React-inspired API.
-* Unified API for native apps and Wayland shells.
+Our goal is to deliver:
 
-### Hyprtheme
+* The **consistency and simplicity of iOS/macOS**,
+* The **freedom and transparency of Linux**,
+* And the **efficiency and responsiveness of modern embedded systems**.
 
-* Universal TOML format for theming.
-* Resolves GTK/Qt fragmentation.
-* Ensures visual and behavioral consistency across the system.
-
----
-
-## 🔀 HyprSessionManager (HSM)
-
-* Compositors (Hyprland, tibs) render to **off-screen framebuffers** and send them to the HSM.
-* The HSM decides which buffer appears on which display, applies transformations, and performs final composition to DRM/KMS.
-* **Two rendering modes**:
-
-  * *Pass-through (zero-copy)*: ideal for gaming (direct scanout).
-  * *Hybrid composition*: for animations, overlays, and multiple sessions.
-* Controls who can receive keyboard and mouse inputs
-* Handles privileged shortcuts (Win+L, Ctrl+Alt+Del)
-* Handles animations and transitions between screens
-
-```
-
-tibs           (🔒) ┅┅┅> session manager ━> DRM (screen)
-user1 hyprland (✅) ━━━━━━━━━┫
-user2 hyprland (🔒) ┅┅┅┅┅┅┅┅┅┛
-```
+We see Hyprside as **the next step for Linux on the desktop** — not a distro, but a new generation of system.
 
 ---
 
-## 📋 Additional Features
+## 🧠 Design Philosophy
 
-* GPU-based screen recording integrated into the shell.
-* Debounce for repeated permission requests.
-* Unified file picker (replaces native GTK/Qt pickers).
+* **Everything should feel intentional.**
+  The OS must express a single design language, visually and behaviorally.
+
+* **The terminal should be abolished**
+  Power users can still access it — but the system must stand on its own without it.
+
+* **Stability through immutability.**
+  A user should never need to “fix” their system after an update.
+  The system configuration should migrate itself to newer versions automatically
+
+* **Performance through simplicity.**
+  Every process, component, and daemon must justify its existence and work together.
+
+* **Unified experience.**
+  Apps, animations, and settings must behave as one cohesive ecosystem.
 
 ---
 
-## 🔐 Philosophy
+## 🧩 Long-Term Goals
 
-* Simple, elegant, cohesive, and performant.
-* Total consistency between apps, UI, and system behavior.
-* GUI-first: the terminal is never mandatory.
-* Security and design as central pillars.
+* A complete **GUI-first Linux operating system**, usable out of the box by anyone.
+* Seamless **Android and Windows app integration**.
+* An **App Store** with both open and commercial software, unified under one interface.
+* **One-click system rollback** and profile syncing between devices.
+* A **developer mode** that turns Hyprside into a full Linux workstation.
 
 ---
 
-## 📦 System Architecture
+## 🪄 What Hyprside Feels Like
 
-Hyprside is based on the concept of an **immutable ROM**, inspired by Android and ChromeOS:
+Hyprside aims to give users the same sense of polish and trust you get from macOS or iOS — but with total freedom, transparency, and speed.
 
-* The system is distributed as a **read-only image (**`.img`**)**.
-* Only `/home` and specific directories are mutable.
-* Atomic updates: download new image → replace → reboot.
-* No risk of breaking the system as with `apt upgrade` or `pacman -Syu`.
-* You can treat your computer like an appliance
-### Software Management
+It’s not about replacing Linux.
+It’s about **fulfilling what Linux on the desktop was always meant to become.**
 
-* Apps via **Flatpak**, with looser restrictions.
-* Developer mode enables a full package manager.
-* Custom images possible (for self-hosting or custom builds).
+---
 
-### User Profiles
+## ⚡ Current Status
 
-* **Normal user:** access only to `/home`.
-* **Administrator:** system-wide apps and configurations.
-* **root/SYSTEM:** reserved for critical system operations.
+> 🧪 **Early Development (v0.1-dev)**
+> The base system boots successfully under QEMU with a custom kernel, init, and image builder.
+> Work is ongoing on the new Rust-based init system and HyprUI-powered desktop.
 
-### Advantages
+---
 
-* **Stability:** base system never corrupted.
-* **Reproducibility:** setups easily replicable across machines.
-* **Simplicity:** formatting is trivial (just clear mutable subvolumes).
-* **Portability:** design makes it easier to port Hyprside to Android smartphones later.
+## 💡 Join the Journey
+
+Hyprside is a long-term project — a vision to redefine how desktop systems are designed.
+If you believe the desktop can be better, faster, and more elegant, you’re already one of us.
+
+🌐 **[hyprside.org (coming soon)]**
+💬 [Discord / Community](https://discord.gg/5XTkw7AM)
+💻 [GitHub Projects](https://github.com/hyprside)
+
+
+> “A next-generation immutable Linux OS — GUI-first, GPU-native, and built entirely in Rust.”
